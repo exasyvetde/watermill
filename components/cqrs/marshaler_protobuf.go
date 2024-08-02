@@ -6,7 +6,7 @@ import (
 	"github.com/exasyvetde/watermill"
 	"github.com/exasyvetde/watermill/message"
 
-	"github.com/gogo/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 )
 
 // ProtobufMarshaler is the default Protocol Buffers marshaler.
