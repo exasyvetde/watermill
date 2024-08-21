@@ -38,6 +38,11 @@ func (s *SlogLoggerAdapter) Debug(msg string, fields LogFields) {
 	s.slog.Debug(msg, slogAttrsFromFields(fields)...)
 }
 
+// Warn logs a message to [slog.LevelWarn].
+func (s *SlogLoggerAdapter) Warn(msg string, fields LogFields) {
+	s.slog.Warn(msg, slogAttrsFromFields(fields)...)
+}
+
 // Trace logs a message to [LevelTrace].
 func (s *SlogLoggerAdapter) Trace(msg string, fields LogFields) {
 	s.slog.Log(

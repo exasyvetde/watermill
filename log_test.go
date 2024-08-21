@@ -31,16 +31,19 @@ func TestStdLogger_with(t *testing.T) {
 		logger.Info(name, watermill.LogFields{"bar": "2"})
 		logger.Debug(name, watermill.LogFields{"bar": "2"})
 		logger.Trace(name, watermill.LogFields{"bar": "2"})
+		logger.Warn(name, watermill.LogFields{"bar": "2"})
 	}
 
 	cleanLoggerOut := buf.String()
 	assert.Contains(t, cleanLoggerOut, `level=ERROR msg="clean" bar=2 err=<nil>`)
 	assert.Contains(t, cleanLoggerOut, `level=INFO  msg="clean" bar=2`)
 	assert.Contains(t, cleanLoggerOut, `level=TRACE msg="clean" bar=2`)
+	assert.Contains(t, cleanLoggerOut, `level=WARN msg="clean" bar=2`)
 
 	assert.Contains(t, cleanLoggerOut, `level=ERROR msg="with" bar=2 err=<nil> foo=1`)
 	assert.Contains(t, cleanLoggerOut, `level=INFO  msg="with" bar=2 foo=1`)
 	assert.Contains(t, cleanLoggerOut, `level=TRACE msg="with" bar=2 foo=1`)
+	assert.Contains(t, cleanLoggerOut, `level=WARN msg="with" bar=2 foo=1`)
 }
 
 type stringer struct{}
@@ -79,6 +82,7 @@ func TestCaptureLoggerAdapter(t *testing.T) {
 	logger.Info("info", watermill.LogFields{"bar": "2"})
 	logger.Debug("debug", watermill.LogFields{"bar": "2"})
 	logger.Trace("trace", watermill.LogFields{"bar": "2"})
+	logger.Warn("warn", watermill.LogFields{"bar": "2"})
 
 	expectedLogs := map[watermill.LogLevel][]watermill.CapturedMessage{
 		watermill.TraceLogLevel: {
@@ -111,6 +115,14 @@ func TestCaptureLoggerAdapter(t *testing.T) {
 				Fields: watermill.LogFields{"default": "field", "bar": "2"},
 				Msg:    "error",
 				Err:    err,
+			},
+		},
+		watermill.WarnLogLevel: {
+			watermill.CapturedMessage{
+				Level:  watermill.WarnLogLevel,
+				Fields: watermill.LogFields{"bar": "2", "default": "field"},
+				Msg:    "warn",
+				Err:    error(nil),
 			},
 		},
 	}

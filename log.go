@@ -46,6 +46,7 @@ type LoggerAdapter interface {
 	Info(msg string, fields LogFields)
 	Debug(msg string, fields LogFields)
 	Trace(msg string, fields LogFields)
+	Warn(msg string, fields LogFields)
 	With(fields LogFields) LoggerAdapter
 }
 
@@ -56,6 +57,7 @@ func (NopLogger) Error(msg string, err error, fields LogFields) {}
 func (NopLogger) Info(msg string, fields LogFields)             {}
 func (NopLogger) Debug(msg string, fields LogFields)            {}
 func (NopLogger) Trace(msg string, fields LogFields)            {}
+func (NopLogger) Warn(msg string, fields LogFields)             {}
 func (l NopLogger) With(fields LogFields) LoggerAdapter         { return l }
 
 // StdLoggerAdapter is a logger implementation, which sends all logs to provided standard output.
@@ -64,6 +66,7 @@ type StdLoggerAdapter struct {
 	InfoLogger  *log.Logger
 	DebugLogger *log.Logger
 	TraceLogger *log.Logger
+	WarnLogger  *log.Logger
 
 	fields LogFields
 }
@@ -76,7 +79,7 @@ func NewStdLogger(debug, trace bool) LoggerAdapter {
 // NewStdLoggerWithOut creates StdLoggerAdapter which sends all logs to provided io.Writer.
 func NewStdLoggerWithOut(out io.Writer, debug bool, trace bool) LoggerAdapter {
 	l := log.New(out, "[watermill] ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
-	a := &StdLoggerAdapter{InfoLogger: l, ErrorLogger: l}
+	a := &StdLoggerAdapter{InfoLogger: l, ErrorLogger: l, WarnLogger: l}
 
 	if debug {
 		a.DebugLogger = l
@@ -104,12 +107,17 @@ func (l *StdLoggerAdapter) Trace(msg string, fields LogFields) {
 	l.log(l.TraceLogger, "TRACE", msg, fields)
 }
 
+func (l *StdLoggerAdapter) Warn(msg string, fields LogFields) {
+	l.log(l.WarnLogger, "WARN", msg, fields)
+}
+
 func (l *StdLoggerAdapter) With(fields LogFields) LoggerAdapter {
 	return &StdLoggerAdapter{
 		ErrorLogger: l.ErrorLogger,
 		InfoLogger:  l.InfoLogger,
 		DebugLogger: l.DebugLogger,
 		TraceLogger: l.TraceLogger,
+		WarnLogger:  l.WarnLogger,
 		fields:      l.fields.Add(fields),
 	}
 }
@@ -159,6 +167,7 @@ const (
 	DebugLogLevel
 	InfoLogLevel
 	ErrorLogLevel
+	WarnLogLevel
 )
 
 type CapturedMessage struct {
@@ -252,6 +261,14 @@ func (c *CaptureLoggerAdapter) Debug(msg string, fields LogFields) {
 func (c *CaptureLoggerAdapter) Trace(msg string, fields LogFields) {
 	c.capture(CapturedMessage{
 		Level:  TraceLogLevel,
+		Fields: c.fields.Add(fields),
+		Msg:    msg,
+	})
+}
+
+func (c *CaptureLoggerAdapter) Warn(msg string, fields LogFields) {
+	c.capture(CapturedMessage{
+		Level:  WarnLogLevel,
 		Fields: c.fields.Add(fields),
 		Msg:    msg,
 	})
