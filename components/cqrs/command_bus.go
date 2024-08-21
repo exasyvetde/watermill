@@ -5,9 +5,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ThreeDotsLabs/watermill"
+	"github.com/exasyvetde/watermill"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 type CommandBusConfig struct {

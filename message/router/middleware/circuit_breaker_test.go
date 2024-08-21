@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill/message"
-	"github.com/ThreeDotsLabs/watermill/message/router/middleware"
+	"github.com/exasyvetde/watermill/message"
+	"github.com/exasyvetde/watermill/message/router/middleware"
 	"github.com/sony/gobreaker"
 	"github.com/stretchr/testify/assert"
 )

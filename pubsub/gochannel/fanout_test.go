@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
-	"github.com/ThreeDotsLabs/watermill/pubsub/gochannel"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
+	"github.com/exasyvetde/watermill/pubsub/gochannel"
 )
 
 func TestFanOut(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ThreeDotsLabs/watermill/components/cqrs"
+	"github.com/exasyvetde/watermill/components/cqrs"
 )
 
 func TestEventBusConfig_Validate(t *testing.T) {

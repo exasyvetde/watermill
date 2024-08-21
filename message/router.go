@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/internal"
-	sync_internal "github.com/ThreeDotsLabs/watermill/pubsub/sync"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/internal"
+	sync_internal "github.com/exasyvetde/watermill/pubsub/sync"
 )
 
 var (

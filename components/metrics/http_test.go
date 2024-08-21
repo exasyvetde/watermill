@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ThreeDotsLabs/watermill/components/metrics"
+	"github.com/exasyvetde/watermill/components/metrics"
 )
 
 func TestCreateRegistryAndServeHTTP_metrics_endpoint(t *testing.T) {

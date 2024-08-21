@@ -6,8 +6,8 @@ import (
 
 	"github.com/cenkalti/backoff/v3"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // Retry provides a middleware that retries the handler if errors are returned.
