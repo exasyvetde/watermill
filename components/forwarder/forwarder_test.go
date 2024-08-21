@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/components/forwarder"
-	"github.com/ThreeDotsLabs/watermill/message"
-	"github.com/ThreeDotsLabs/watermill/pubsub/gochannel"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/components/forwarder"
+	"github.com/exasyvetde/watermill/message"
+	"github.com/exasyvetde/watermill/pubsub/gochannel"
 	"github.com/stretchr/testify/suite"
 )
 

@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 func TestMessage_Equals(t *testing.T) {

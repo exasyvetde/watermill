@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // SignalsHandler is a plugin that kills the router after SIGINT or SIGTERM is sent to the process.

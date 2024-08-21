@@ -3,8 +3,8 @@ package middleware_test
 import (
 	"errors"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
 )
 
 type mockPublisherBehaviour int

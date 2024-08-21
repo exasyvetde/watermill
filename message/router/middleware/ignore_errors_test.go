@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ThreeDotsLabs/watermill/message"
-	"github.com/ThreeDotsLabs/watermill/message/router/middleware"
+	"github.com/exasyvetde/watermill/message"
+	"github.com/exasyvetde/watermill/message/router/middleware"
 )
 
 func TestIgnoreErrors_Middleware(t *testing.T) {

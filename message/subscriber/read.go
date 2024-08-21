@@ -3,7 +3,7 @@ package subscriber
 import (
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // BulkRead reads provided amount of messages from the provided channel, until a timeout occurs or the limit is reached.

@@ -3,12 +3,12 @@ package gochannel_test
 import (
 	"testing"
 
-	"github.com/ThreeDotsLabs/watermill/pubsub/gochannel"
+	"github.com/exasyvetde/watermill/pubsub/gochannel"
 
-	"github.com/ThreeDotsLabs/watermill/pubsub/tests"
+	"github.com/exasyvetde/watermill/pubsub/tests"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
 )
 
 func BenchmarkSubscriber(b *testing.B) {

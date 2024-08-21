@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // Constructor is a function that creates a subscriber.

@@ -8,9 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/internal/publisher"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/internal/publisher"
+	"github.com/exasyvetde/watermill/message"
 )
 
 var errCouldNotPublish = errors.New("could not publish, try again")

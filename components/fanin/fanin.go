@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
 )
 
 type Config struct {

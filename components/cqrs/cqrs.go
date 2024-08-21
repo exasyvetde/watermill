@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // Deprecated: use CommandProcessor and EventProcessor instead.

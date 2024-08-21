@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ThreeDotsLabs/watermill/components/cqrs"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/components/cqrs"
+	"github.com/exasyvetde/watermill/message"
 )
 
 func TestEventGroupProcessorConfig_Validate(t *testing.T) {

@@ -3,7 +3,7 @@ package internal_test
 import (
 	"testing"
 
-	"github.com/ThreeDotsLabs/watermill/internal"
+	"github.com/exasyvetde/watermill/internal"
 	"github.com/stretchr/testify/assert"
 )
 

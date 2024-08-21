@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/message"
 )
 
 // MessageHasherReadLimitMinimum specifies the least number

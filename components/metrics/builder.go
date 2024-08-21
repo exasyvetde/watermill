@@ -5,8 +5,8 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/ThreeDotsLabs/watermill/internal"
-	"github.com/ThreeDotsLabs/watermill/message"
+	"github.com/exasyvetde/watermill/internal"
+	"github.com/exasyvetde/watermill/message"
 )
 
 func NewPrometheusMetricsBuilder(prometheusRegistry prometheus.Registerer, namespace string, subsystem string) PrometheusMetricsBuilder {
