@@ -334,6 +334,12 @@ func TestConcurrentSubscribeMultipleTopics(
 	for i := 0; i < topicsCount; i++ {
 		topicName := testTopicName(tCtx.TestID) + fmt.Sprintf("-%d", i)
 
+		var messagesToPublishForTopic []*message.Message
+		for _, msg := range messagesToPublish {
+			newMsg := msg.Copy()
+			messagesToPublishForTopic = append(messagesToPublishForTopic, newMsg)
+		}
+
 		go func() {
 			defer subsWg.Done()
 
@@ -344,7 +350,7 @@ func TestConcurrentSubscribeMultipleTopics(
 				}
 			}
 
-			err := publishWithRetry(pub, topicName, messagesToPublish...)
+			err := publishWithRetry(pub, topicName, messagesToPublishForTopic...)
 			if err != nil {
 				t.Error(err)
 			}
@@ -353,7 +359,7 @@ func TestConcurrentSubscribeMultipleTopics(
 			if err != nil {
 				t.Error(err)
 			}
-			topicMessages, _ := bulkRead(tCtx, messages, len(messagesToPublish), defaultTimeout*5)
+			topicMessages, _ := bulkRead(tCtx, messages, len(messagesToPublishForTopic), defaultTimeout*5)
 
 			receivedMessagesCh <- topicMessages
 		}()
@@ -483,7 +489,9 @@ NackLoop:
 	for i := 0; i < nacksCount; i++ {
 		select {
 		case msg, closed := <-messages:
-			require.True(t, closed, "messages channel closed before all received")
+			if !closed {
+				t.Fatal("messages channel closed before all received")
+			}
 
 			log.Println("sending err for ", msg.UUID)
 			msg.Nack()
@@ -1000,6 +1008,7 @@ ClosedLoop:
 			msg.Nack()
 		case <-timeout:
 			t.Fatal("messages channel is not closed after ", defaultTimeout)
+			t.FailNow()
 		}
 		time.Sleep(time.Millisecond * 100)
 	}
@@ -1267,7 +1276,7 @@ func AddSimpleMessagesParallel(t *testing.T, messagesCount int, publisher messag
 	for i := 0; i < publishers; i++ {
 		go func() {
 			for msg := range publishMsg {
-				err := publishWithRetry(publisher, topicName, msg)
+				err := publishWithRetry(publisher, topicName, msg.Copy())
 				require.NoError(t, err, "cannot publish messages")
 				wg.Done()
 			}

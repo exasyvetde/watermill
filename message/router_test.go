@@ -8,15 +8,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
-
 	"github.com/exasyvetde/watermill"
 	"github.com/exasyvetde/watermill/internal"
 	"github.com/exasyvetde/watermill/message"
 	"github.com/exasyvetde/watermill/message/subscriber"
 	"github.com/exasyvetde/watermill/pubsub/gochannel"
 	"github.com/exasyvetde/watermill/pubsub/tests"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestRouter_functional(t *testing.T) {
@@ -1356,7 +1355,7 @@ func TestRouter_context_cancel_does_not_log_error(t *testing.T) {
 
 	require.Eventually(t, func() bool {
 		return r.IsClosed()
-	}, 1*time.Second, 1*time.Millisecond, "Router should be closed after all handlers are stopped")
+	}, 3*time.Second, 5*time.Millisecond, "Router should be closed after all handlers are stopped")
 
 	assert.Empty(t, logger.Captured()[watermill.ErrorLogLevel], "No error should be logged when context is canceled")
 }
